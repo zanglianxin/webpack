@@ -27,3 +27,6 @@ class App {
 }
 
 console.log(App.a);
+
+import vue from './app.vue'
+console.log(vue);

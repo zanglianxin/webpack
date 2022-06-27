@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   mode: "development",
@@ -15,6 +16,7 @@ module.exports = {
       filename: "index.html",
     }),
     new CleanWebpackPlugin(),
+    new VueLoaderPlugin()
   ],
   devServer: {
     port: 3000, // 端口号
@@ -74,6 +76,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
     ],
   },
 };
