@@ -4,3 +4,6 @@
   background-color: hotpink;
   color: #ffffff;
 }
+body {
+  background: url("../assets/logo_small.png") no-repeat center;
+}

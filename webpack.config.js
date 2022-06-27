@@ -40,6 +40,40 @@ module.exports = {
         // style-loader 在把css代码插入到 dom中
         use: ["style-loader", "css-loader", "less-loader"],
       },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/i,
+        // type: 'asset/resource', //发送一个单独的文件并导出 URL
+        // type: 'asset/inline' //导出一个资源的 data URI
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            // dataUrl的情况
+            maxSize: 8 * 1024,
+            // maxSize 限制最大值
+          },
+        },
+        generator: {
+          filename: "img/[hash:6] [ext]",
+        },
+      },
+      {
+        // webpack5默认内部不认识这些文件, 所以当做静态资源直接输出即可
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/font-[name].[hash:6][ext]",
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"], // 预设:转码规则(用bable开发环境本来预设的)
+          },
+        },
+      },
     ],
   },
 };
